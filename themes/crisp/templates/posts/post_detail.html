@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load mistune %}
+
+{% block content %}
+<article id="{{ post.id }}">
+    <h1 class="post-title">{{ post.title }}</h1>
+    <div class="post-stamp">
+        {{ post.published|date:"Y-m-d" }}
+        {% include 'includes/tags.html' with tags=post.tags.all %}
+    </div>
+    {{ post.content|markdown }}
+</article>
+{% endblock %}

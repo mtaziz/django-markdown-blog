@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for post in object_list %}
+<section id="{{ post.id }}">
+	<h3 class="post-title">
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        <span class="separator"> &middot; </span>
+        {{ post.published|date:"Y-m-d" }}
+        {% include 'includes/tags.html' with tags=post.tags.all %}
+        {% comment %}{{#if featured}}<span class="separator"> &middot; </span><i class="fa fa-star-o feature-star"></i>{{/if}}</h3>{% endcomment %}
+</section>
+{% endfor %}
+{% endblock %}

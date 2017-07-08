@@ -1,0 +1,7 @@
+{% if tags %}
+<span class="taglist">
+{% for t in tags %}
+    <a href="{% url 'tag' t %}">{{ t }}</a>
+{% endfor %}
+</span>
+{% endif %}
