@@ -83,6 +83,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'configuration.context_processors.blog_configuration',
                 'configuration.context_processors.base_url',
+                'posts.context_processors.menu_items',
             ],
         },
     },

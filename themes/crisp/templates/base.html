@@ -15,6 +15,7 @@
 
 	</head>
 	<body>
+
 		<header id="header">
 			<h1>
 				<!--<div style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 30px; background-color: #{{ configuration.colour }};"></div>-->
@@ -28,6 +29,14 @@
 				<a href="{{ link.url }}"><img src="{{ link.icon }}" alt="{{ link.site }}"></a>
 			{% endfor %}
 			</div>
+			{% endif %}
+
+			{% if menu %}
+			{% for page in menu %}
+			<h6>
+				<a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+			</h6>
+			{% endfor %}
 			{% endif %}
 		</header>
 

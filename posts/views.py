@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 
-from .models import Post
+from .models import Page, Post
 
 
 class PostList(ListView):
@@ -16,3 +16,7 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
+
+
+class PageDetail(DetailView):
+    model = Page

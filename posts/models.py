@@ -8,10 +8,10 @@ from taggit.managers import TaggableManager
 class PostManager(models.Manager):
 
     def published(self):
-        return self.get_queryset().filter(status=Post.STATUS_PUBLISHED)
+        return self.get_queryset().filter(status=Post.STATUS_PUBLISHED, published__lte=timezone.now())
 
 
-class Post(models.Model):
+class ContentBase(models.Model):
     STATUS_DRAFT = 1
     STATUS_PUBLISHED = 2
 
@@ -31,18 +31,36 @@ class Post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=STATUS_CHOICES)
 
-    tags = TaggableManager(blank=True)
-
     objects = PostManager()
+
+    class Meta:
+        abstract = True
+        ordering = ['-published', ]
+
+    def is_published(self):
+        return self.published <= timezone.now() and self.status == Post.STATUS_PUBLISHED
+
+
+class Post(ContentBase):
+
+    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = ['-published', ]
 
     def __str__(self):
-        return self.title
+        return 'Post: {}'.format(self.title or self.slug)
 
     def get_absolute_url(self):
         return reverse('post', args=[self.published.year, self.id])
 
-    def is_published(self):
-        return self.published <= timezone.now() and self.status == Post.STATUS_PUBLISHED
+
+class Page(ContentBase):
+
+    show_in_menu = models.BooleanField()
+
+    def __str__(self):
+        return 'Page: {}'.format(self.title)
+
+    def get_absolute_url(self):
+        return reverse('page', args=[self.slug])
