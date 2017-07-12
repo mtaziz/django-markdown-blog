@@ -5,10 +5,9 @@ from .models import Page, Post
 
 class PostList(ListView):
     model = Post
-    queryset = Post.objects.published()
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = self.model.objects.published()
         if 'tag' in self.kwargs:
             qs = qs.filter(tags__slug__in=[self.kwargs['tag']])
         return qs
