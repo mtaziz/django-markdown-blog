@@ -4,7 +4,7 @@
 	    <meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-		<title>{{ configuration.title }}</title>
+		<title>{% if post %}{{ post.title }} - {% endif %}{{ configuration.title }}</title>
 	    <meta name="description" content="{{ configuration.by_line }}" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 

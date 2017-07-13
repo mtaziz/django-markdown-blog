@@ -1,0 +1,57 @@
+{% load urljoin %}
+<style>
+    .btn {
+        display: inline-block;
+        font-size: 0.775em;
+        padding: 0.5em 0.6875em;
+        line-height: 1.2;
+        font-weight: normal;
+        background-color: #0088cc;
+        border: 1px solid #0088cc;
+        margin-right: 0.3125em;
+        margin-bottom: 0.3125em;
+    }
+
+    a.btn, a.btn:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-tweet {
+        background-color: #41b7d8;
+        border-color: #41b7d8;
+    }
+    .btn-tweet:hover,
+    a .btn-tweet:hover {
+        background-color: #238caa;
+        border-color: #238caa;
+    }
+
+    .btn-facebook {
+        background-color: #3b5997;
+        border-color: #3b5997;
+    }
+
+    .btn-facebook:hover,
+    a .btn-facebook:hover {
+        background-color: #263960;
+        border-color: #263960;
+    }
+
+    .btn-linkedin {
+        background-color: #0073b2;
+        border-color: #0073b2;
+    }
+
+    .btn-linkedin:hover,
+    a .btn-linkedin:hover {
+        background-color: #004265;
+        border-color: #004265;
+    }
+</style>
+
+<div class="share">
+    <a class="btn btn-tweet" target="_blank" href="https://twitter.com/intent/tweet?text={{ post.title }}&url={% urljoin url post.get_absolute_url %}&via=sesh">Tweet</a>
+    <a class="btn btn-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% urljoin url post.get_absolute_url %}">Share on Facebook</a>
+    <a class="btn btn-linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={% urljoin url post.get_absolute_url %}&title={{ post.title }}&source={% urljoin url post.get_absolute_url %}">Share on LinkedIn</a>
+</div>

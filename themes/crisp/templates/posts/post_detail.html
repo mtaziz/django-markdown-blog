@@ -9,5 +9,7 @@
         {% include 'includes/tags.html' with tags=post.tags.all %}
     </div>
     {{ post.content|markdown }}
+
+    {% include 'sharing.html' with post=post %}
 </article>
 {% endblock %}
