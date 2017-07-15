@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from envparse import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,16 +25,15 @@ DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 if DEBUG:
-    SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default-secret')
+    SECRET_KEY = env('DJANGO_SECRET_KEY', default='default-secret')
 else:
-    SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+    SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 ALLOWED_HOSTS = ['localhost']
-if os.environ.get('DJANGO_ALLOWED_HOSTS'):
-    ALLOWED_HOSTS += [x.strip() for x in os.environ.get('DJANGO_ALLOWED_HOSTS').split(',')]
+ALLOWED_HOSTS += env('DJANGO_ALLOWED_HOSTS', cast=list, default=[])
+
 
 # Application definition
-
 BLOG_THEME = 'crisp'
 
 INSTALLED_APPS = [
@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'configuration',
     'posts',
 ]
+
+INSTALLED_APPS += env('DJANGO_EXTRA_APPS', cast=list, default=[])
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

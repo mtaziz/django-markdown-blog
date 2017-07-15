@@ -15,17 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.shortcuts import redirect
-
-
-def css(request):
-    return redirect('/static/css/brntn.css')
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('posts.urls')),
-
-    # XXX: this is just to handle some old links :/
-    url(r'^css/brntn.css', css)
+    url(r'', include('brntn.urls')),
 ]

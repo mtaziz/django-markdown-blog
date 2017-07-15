@@ -10,7 +10,7 @@ class UserFactoryTestCase(TestCase):
     def test_can_create_user(self):
         u = UserFactory()
         self.assertTrue(u.is_active)
-        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(User.objects.filter(username=u.username).count(), 1)
 
 
 class PostFactoryTestCase(TestCase):
