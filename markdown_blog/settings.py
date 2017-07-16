@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'up',
 
     # our apps
-    'progressive',
     'configuration',
     'posts',
 ]
