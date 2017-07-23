@@ -25,4 +25,4 @@ urlpatterns = [
 
 extra_apps = getattr(settings, 'EXTRA_APPS')
 for app in extra_apps:
-    urlpatterns.extend(url(r'', include('{}.urls'.format(app))))
+    urlpatterns.append(url(r'', include('{}.urls'.format(app))))
