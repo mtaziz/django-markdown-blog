@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('posts.urls')),
-    url(r'', include('brntn.urls')),
 ]
+
+extra_apps = getattr(settings, 'EXTRA_APPS')
+for app in extra_apps:
+    urlpatterns.extend(url(r'', include('{}.urls'.format(app))))

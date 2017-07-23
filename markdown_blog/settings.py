@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'posts',
 ]
 
-INSTALLED_APPS += env('DJANGO_EXTRA_APPS', cast=list, default=[])
+EXTRA_APPS = env('DJANGO_EXTRA_APPS', cast=list, default=[])
+INSTALLED_APPS += EXTRA_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

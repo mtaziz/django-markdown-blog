@@ -15,7 +15,6 @@
 
 		<header id="header">
 			<h1>
-				<!--<div style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 30px; background-color: #{{ configuration.colour }};"></div>-->
 				<a href="{{ url }}">{{ configuration.title }}</a>
 			</h1>
 
@@ -43,7 +42,10 @@
 		</main>
 
 		<footer id="footer">
-			<section id="footer-message">&copy; {% now "Y" %} {{ configuration.title }}. All rights reserved. <a href="https://github.com/kathyqian/crisp" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
+			<div id="footer-message">
+				&copy; {% now "Y" %} {{ configuration.title }}. All rights reserved. <a href="https://github.com/kathyqian/crisp" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.
+				Powered by <a href="https://github.com/sesh/django-markdown-blog">django-markdown-blog</a>.
+			</div>
 		</footer>
 
         <script src="{% static 'js/highlight.min.js' %}"></script>
